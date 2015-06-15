@@ -15,7 +15,7 @@ tiny_linux是高级操作系统课上要求完成的作品，要求实现以下�
     平台 ：  X86_64
     linux:   4.0.4
     优化前:　bzImage＝6.5M　内存＝35M
-    优化后:　bzImage＝931K　内存＝22M
+    优化后:　bzImage＝886K　内存＝22M
 
 ===
 
@@ -328,7 +328,7 @@ bzImage的大小将从`6.5M`缩减为`5.1M`
              [*] Intel devices
              [*] Intel(R) PRO/1000 Gigabit Ethernet support
 
-     Character devices  ---> 
+    Character devices  ---> 
         [*] Enable TTY 
             Serial drivers  ---> 
             [*] 8250/16550 and compatible serial support
@@ -337,6 +337,14 @@ bzImage的大小将从`6.5M`缩减为`5.1M`
             [*]   8250/16550 PCI device support
             (4)   Maximum number of 8250/16550 serial ports       
             (4)   Number of 8250/16550 serial ports to register at runtime 
+
+**File systems**（可选）
+
+    File systems  --->   
+        Pseudo filesystems  --->   
+            [*] /proc file system support   
+
+如果想支持`top`，`ps`等相关命令，需要开启该选项，开启后，bzImage大小将由886K变为930K
 
 具体可以参考`tiny_linx/configs/config_931K`,通过该配置，编译出来的bzImage大小只有931K，使用qemu启动的时候，注意需要采用`-append "console=ttyS0" -nographic`方式，才能正常加载。
 
