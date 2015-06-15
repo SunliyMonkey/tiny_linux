@@ -332,7 +332,7 @@ bzImage的大小将从`6.5M`缩减为`5.1M`
         [*] Enable TTY 
             Serial drivers  ---> 
             [*] 8250/16550 and compatible serial support
-            [*]   Support 8250_core.* kernel options (DEPRECATED)
+            [ ]   Support 8250_core.* kernel options (DEPRECATED)
             [*]   Console on 8250/16550 and compatible serial port
             [*]   8250/16550 PCI device support
             (4)   Maximum number of 8250/16550 serial ports       
@@ -340,11 +340,13 @@ bzImage的大小将从`6.5M`缩减为`5.1M`
 
 **File systems**（可选）
 
+如果想支持`top`，`ps`等相关命令，需要开启该选项，开启后，bzImage大小将由886K变为930K
+
     File systems  --->   
         Pseudo filesystems  --->   
             [*] /proc file system support   
 
-如果想支持`top`，`ps`等相关命令，需要开启该选项，开启后，bzImage大小将由886K变为930K
+
 
 具体可以参考`tiny_linx/configs/config_931K`,通过该配置，编译出来的bzImage大小只有931K，使用qemu启动的时候，注意需要采用`-append "console=ttyS0" -nographic`方式，才能正常加载。
 
