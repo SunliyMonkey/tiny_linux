@@ -40,12 +40,12 @@ tiny_linux是高级操作系统课上要求完成的作品，要求实现以下�
 
 在内核代码根目录的Makefile当中，可以发现有如下文字描述：
 
- >背景：Makefile Line 98
-    # kbuild supports saving output files in a separate directory.
-    # To locate output files in a separate directory two syntaxes are supported.
-    # In both cases the working directory must be the root of the kernel src.
-    # 1) O=
-    # Use "make O=dir/to/store/output/files/"
+ >背景：Makefile Line 98<br/>
+    # kbuild supports saving output files in a separate directory.<br/>
+    # To locate output files in a separate directory two syntaxes are supported.<br/>
+    # In both cases the working directory must be the root of the kernel src.<br/>
+    # 1) O=<br/>
+    # Use "make O=dir/to/store/output/files/"<br/>
 
 利用`make O=`命令，可以使输出文件与源代码文件分离，这样使得我们能够建立不同的输出文件，每个独立的输出文件都可以有自己的专属配置，这个在后期精简config的过程当中，特别有用。
 
@@ -224,12 +224,14 @@ tiny_linux是高级操作系统课上要求完成的作品，要求实现以下�
     ip addr add 10.0.2.15/24 dev eth0
     ip route add default via 10.0.2.2
 
-通过该配置，就给模拟的linux设置IP地址等,使得tiny_linux与Host OS能够进行通信了。查看Qemu官方文档
+通过该配置，就给模拟的linux设置IP地址等,使得tiny_linux与Host OS能够进行通信了。
+
+#### 百度网站测试
 
 >[Qemu Networking官方说明文档][3]<br/>
 Note - if you are using the (default) SLiRP user networking, then **ping (ICMP) will not work**, though TCP and UDP will. Don't try to use ping to test your QEMU network configuration!
 
-这里是讲，如果使用qemu默认的网络，将无法使用`ping`进行网络测试，因此我们采用`wget`进行网络测试，以百度网页测试为例：
+从该文档得知，如果使用qemu默认的网络，将无法使用`ping`进行网络测试，因此我们采用`wget`进行网络测试，以百度网页测试为例：
     
     / # wget www.baidu.com
     wget: bad address 'www.baidu.com'
@@ -241,6 +243,8 @@ Note - if you are using the (default) SLiRP user networking, then **ping (ICMP) 
     index.html      100% |*******************************| 92768   0:00:00 ETA
 
 下载网页成功，为确保下载的是百度搜索的首页，可以使用`vi index.html`，查看该html文件，你将发现有很多关键字`baidu`
+
+#### 本机搭建网站测试
 
 由于采用这种方式，并不太直观，我们可以在Host OS中搭建一个http服务器，然后使用相同方式连接
 
