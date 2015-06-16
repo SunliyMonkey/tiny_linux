@@ -1,12 +1,11 @@
 #tiny_linux
 
----
 
 tiny_linux是高级操作系统课上要求完成的作品，要求实现以下两点：
 
-1. 制作一个精简的linux内核，要求在大小尽可能小的情况下，能够支持TCP/IP进行数据传输，需要对内核所需模块进行定制。
+1. 精简linux内核镜像，要求在支持TCP/IP数据传输的情况下，内核镜像和正常运行所需内存能够做到尽可能的小。
 
-2. 采用busybox制作根文件系统，利用kernel mode linux补丁，使busybox运行在内核态。
+2. 采用busybox制作根文件系统，利用kernel mode linux补丁，使得busybox运行在内核态。
 
 在这里记录了我完成该作品的过程，希望对大家有用。
 
@@ -22,6 +21,31 @@ tiny_linux是高级操作系统课上要求完成的作品，要求实现以下�
     优化前:　bzImage＝6.5M　内存＝*M
     优化后:　bzImage＝726K　内存＝21.6M
     
+
+---
+
+###目录
+
+- [Section 1：linux内核镜像文件](#section-1linux内核镜像文件)
+- [Section 2：根文件系统镜像文件](#section-2根文件系统镜像文件)
+	- [构建busybox](#构建busybox)
+	- [根文件系统制作](#根文件系统制作)
+	- [网络配置及测试](#网络配置及测试)
+		- [百度网站测试](#百度网站测试)
+		- [本机搭建网站测试](#本机搭建网站测试)
+- [Section 3：精简bzImage](#section-3精简bzimage)
+	- [编译选项优化](#编译选项优化)
+	- [替换压缩方式](#替换压缩方式)
+	- [步步精简config](#步步精简config)
+	- [最小配置](#最小配置)
+- [Section 4：Kernel Mode Linux](#section-4kernel-mode-linux)
+	- [KML Patch](#kml-patch)
+	- [内核态运行busybox](#内核态运行busybox)
+	- [内核态运行测试](#内核态运行测试)
+		- [time测试](#time测试)
+		- [截取寄存器值](#截取寄存器值)
+- [参考资料](#参考资料)
+
 ---
 
 ##Section 1：linux内核镜像文件
