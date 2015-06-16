@@ -19,7 +19,8 @@ tiny_linux是高级操作系统课上要求完成的作品，要求实现以下�
     linux:   4.0.4
     优化前:　bzImage＝6.5M　内存＝*M
     优化后:　bzImage＝726K　内存＝21.6M
-===
+    
+---
 
 ##Section 1：linux内核镜像文件
 >**背景: [Linux内核的启动过程](http://book.51cto.com/art/201405/438671.htm)**<br/>
@@ -256,6 +257,8 @@ Note - if you are using the (default) SLiRP user networking, then **ping (ICMP) 
 
 到这里，我们已经成功制作了根文件系统内核镜像，并且能够保证网络通信。
 
+---
+
 ##Section 3：精简bzImage
     
 在前面两个板块当中，我们分别制作了bzImage以及根文件系统镜像，这个版块，主要讲述我对bzImage精简的过程。在[杨海宇同学][1]的文档中，他提供了x86的配置选项，而在使用的过程当中，发现无法启动，因此自己一步步对x86_64_defconfig进行了裁剪。
@@ -366,6 +369,7 @@ gcc在编译的过程当中，我们知道有`O1,O2,O3`等优化，能够一定�
 
 具体可以参考`tiny_linx/configs/config_726K`,通过该配置，编译出来的bzImage大小只有726K，使用qemu启动的时候，注意需要采用`-append "console=ttyS0" -nographic`方式，才能正常加载。
 
+---
 
 ##Section 4：Kernel Mode Linux
     
@@ -453,6 +457,8 @@ int main() {
 
 ```
 
+---
+
 ##参考资料
 
 * [杨海宇同学制作文档][1] 详细讲述了如何进行根文件系统制作，以及在这个过程中可能出现的问题。
@@ -478,7 +484,7 @@ int main() {
 [8]: http://lxr.free-electrons.com/source/Documentation/init.txt "init"
 [9]: http://elinux.org/Work_on_Tiny_Linux_Kernel "tiny_linx_kernel project"
 
-
+---
 
 
 
